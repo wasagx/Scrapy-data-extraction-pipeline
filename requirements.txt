@@ -1,0 +1,8 @@
+scrapy==2.5.0
+pyOpenSSL==21.0.0
+cryptography==3.4.8
+psycopg2-binary==2.9.3       # PostgreSQL adapter
+pymongo==3.12.1              # MongoDB adapter
+redis==4.1.0                 # Redis adapter
+pandas==1.3.3                # For handling data and CSV export
+Twisted==22.10.0

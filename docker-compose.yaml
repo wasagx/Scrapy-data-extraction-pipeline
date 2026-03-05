@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  scrapy:
+    build: .
+    working_dir: /app/jobs_project
+    environment:
+      - PYTHONPATH=/app
+      - ASYNCIO_REACTOR=true
+    depends_on:
+      - postgres
+      - redis
+      - mongodb
+    volumes:
+      - .:/app
+      - ./jobs_project/jobs_project/data:/app/jobs_project/jobs_project/data
+
+    command: python -m scrapy crawl job_spider --nolog
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: jobs_db
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: jobs_db
